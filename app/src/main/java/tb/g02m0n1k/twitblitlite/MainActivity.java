@@ -4,7 +4,10 @@ import static tb.g02m0n1k.twitblitlite.R.drawable.gradient_bar;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -49,16 +52,21 @@ public class MainActivity extends AppCompatActivity {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadUrl(TBL);
 
+        // Кнопка перезапуска страницы
         reloadButton.setOnClickListener(v -> {
-            webView.loadUrl(TBL);
-            errpage.setVisibility(View.GONE);
-            reloadButton.setVisibility(View.GONE);
-            textViewLink.setVisibility(View.GONE);
-            bg.setVisibility(View.GONE);
+            if (isNetworkAvailable()) {
+                webView.goBack();
+                errpage.setVisibility(View.GONE);
+                reloadButton.setVisibility(View.GONE);
+                textViewLink.setVisibility(View.GONE);
+                bg.setVisibility(View.GONE);
+            } else {
+                assert true;
+            }
         });
 
         textViewLink.setOnClickListener(v -> {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://gitverse.ru/G02m0n1k/Twitblit_LITE"));
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/G02m0n1k/Twitblit_LITE"));
             startActivity(browserIntent);
         });
 
@@ -87,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
                 super.onReceivedError(view, errorCode, description, failingUrl);
                 // Отобразить ошибку, если возникла ошибка интернет-соединения
+                webView.loadUrl("about:blank");
                 bg.setVisibility(View.VISIBLE);
                 errpage.setVisibility(View.VISIBLE);
                 reloadButton.setVisibility(View.VISIBLE);
@@ -94,6 +103,12 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         webView.setWebViewClient(webViewClient);
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
     @Override
