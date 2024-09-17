@@ -24,7 +24,7 @@ Twitblit LITE - НЕОФИЦИАЛЬНЫЙ Android клиент для ново�
 <a href="https://www.rustore.ru/catalog/app/tb.g02m0n1k.twitblitlite" target="_blank">
 <img src="./readme-images/RuStore-dark-logo.png" width="156" height="52" alt="Скачайте из RuStore">
 </a>
-<a href="https://github.com/G02m0n1k/Twitblit_LITE" target="_blank">
+<a href="https://github.com/G02m0n1k/Twitblit_LITE/releases" target="_blank">
 <img src="./readme-images/GitHub-dark-logo.png" width="156" height="52" alt="Открыть на GitHub">
 </a>
 
