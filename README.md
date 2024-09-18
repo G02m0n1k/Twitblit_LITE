@@ -1,6 +1,6 @@
 ﻿# <p align="center">Twitblit LITE</p>
 
-<p align="center"><image src="./readme-images/tbliteico.png" alt="Логотип Twitblit LITE" width="256"></p>
+<p align="center"><image src="./readme-images/tbliteico.png" alt="Логотип Twitblit LITE" width="200"></p>
 
 ** **
 
