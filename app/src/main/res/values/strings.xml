@@ -2,5 +2,5 @@
     <string name="app_name">Twitblit LITE</string>
     <string name="loaderr">Page load\nerror\n(*-﹏-)\n\n\nTry reloading\nthe page.</string>
     <string name="relpg">Reload</string>
-    <string name="srcongithub">[Source code on GitHub]</string>
+    <string name="social">Links to resources:</string>
 </resources>

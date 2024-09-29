@@ -2,5 +2,5 @@
     <string name="app_name">Twitblit LITE</string>
     <string name="loaderr">Ошибка загрузки\nстраницы\n(*-﹏-)\n\n\nПопробуйте\nперезагрузить\nстраницу.</string>
     <string name="relpg">Перезагрузить</string>
-    <string name="srcongithub">[Исходный код на GitHub]</string>
+    <string name="social">Ссылки на ресурсы:</string>
 </resources>
