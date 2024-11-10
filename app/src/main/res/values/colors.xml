@@ -2,6 +2,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="tb_light">#d493fc</color>
-    <color name="tb_dark">#a000fe</color>
+    <color name="tb_light">#5f17dc</color>
+    <color name="tb_dark">#520187</color>
 </resources>
