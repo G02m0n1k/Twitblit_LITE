@@ -18,18 +18,6 @@
             android:layout_height="match_parent"/>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <ProgressBar
-        android:id="@+id/loadingbar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:max="100"
-        android:visibility="gone"
-        android:progressBackgroundTint="@color/tb_dark"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <FrameLayout
         android:id="@+id/bg"
         android:layout_width="match_parent"
@@ -37,12 +25,6 @@
         android:background="@color/black"
         android:visibility="gone"
         android:orientation="horizontal" >
-
-        <View
-            android:id="@+id/gradientswap"
-            android:layout_width="match_parent"
-            android:layout_height="4dp"
-            android:background="@drawable/gradient_swapper"/>
 
         <TextView
             android:id="@+id/errpage"
@@ -57,7 +39,7 @@
             tools:ignore="MissingConstraints" />
 
         <Button
-            android:id="@+id/reloadButton"
+            android:id="@+id/reButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -65,15 +47,16 @@
             android:textColor="@color/white"
             android:textSize="21sp"
             android:text="@string/relpg"
+            app:cornerRadius="10dp"
             tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/social"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginEnd="27dp"
             android:layout_gravity="bottom"
-            android:gravity="start"
+            android:gravity="end"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:text="@string/social"
@@ -83,25 +66,14 @@
             tools:ignore="MissingConstraints"/>
 
         <Button
-            android:id="@+id/tgchat"
+            android:id="@+id/site"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_gravity="bottom"
-            android:layout_marginStart="10dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="6dp"
+            android:layout_gravity="end|bottom"
             android:backgroundTint="#00FFFFFF"
-            android:foreground="@drawable/tg"
-            android:scaleType="fitCenter"/>
-
-        <Button
-            android:id="@+id/sourcecode"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="bottom"
-            android:layout_marginStart="80dp"
-            android:layout_marginBottom="5dp"
-            android:backgroundTint="#00FFFFFF"
-            android:foreground="@drawable/gh"
+            android:foreground="@drawable/web"
             android:scaleType="fitCenter"/>
 
     </FrameLayout>

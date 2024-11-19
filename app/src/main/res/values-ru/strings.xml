@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Twitblit LITE</string>
-    <string name="loaderr">Ошибка загрузки\nстраницы\n(*-﹏-)\n\n\nПопробуйте её\nперезагрузить</string>
+    <string name="loaderr">Ошибка загрузки\nстраницы\n(*-﹏-)\n\n\n\nПопробуйте её\nперезагрузить</string>
     <string name="relpg">Перезагрузить</string>
-    <string name="social">Ссылки на ресурсы:</string>
+    <string name="social">Сайт проекта ↴</string>
+    <string name="choice">Выберите файл</string>
+    <string name="share">Поделиться</string>
 </resources>

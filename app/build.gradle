@@ -10,8 +10,8 @@ android {
         applicationId "tb.g02m0n1k.twitblitlite"
         minSdk 28
         targetSdk 34
-        versionCode 6
-        versionName '1.0.3'
+        versionCode 7
+        versionName '1.0.31'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

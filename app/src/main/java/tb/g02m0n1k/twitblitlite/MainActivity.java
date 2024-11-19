@@ -14,8 +14,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
-import android.webkit.DownloadListener;
-import android.webkit.URLUtil;
+import android.webkit.JavascriptInterface;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
@@ -34,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private final static int FILECHOOSER_RESULTCODE = 1;
     private static final String TB = "twitblit.ru"; // URL Twitblit
     private static final String TBL = "https://twitblit.ru/login"; // URL Twitblit с полем входа
-    Button tgchat, srccode, reloadButton;
+    Button website, reButton;
     View bg;
 
     @SuppressLint({"SetJavaScriptEnabled", "MissingInflatedId", "ResourceType"})
@@ -45,59 +44,69 @@ public class MainActivity extends AppCompatActivity {
         this.getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
 
-        // Окрашивание строки состояния в градиент
+        // Окрашивание строки состояния
         getWindow().setStatusBarColor(ContextCompat.getColor(this, android.R.color.transparent));
         getWindow().setBackgroundDrawableResource(gradient_bar);
 
+
+        // = = = = = = = = = =
+
         swipeRefreshLayout = findViewById(R.id.mainwv);
-        swipeRefreshLayout.setColorSchemeResources(R.color.tb_light, R.color.white);
+        swipeRefreshLayout.setColorSchemeResources(R.color.white, R.color.tb_pink, R.color.tb_light, R.color.tb_pink);
         swipeRefreshLayout.setProgressBackgroundColorSchemeResource(R.color.tb_dark);
 
         webView = findViewById(R.id.webView);
         webView.getSettings().setJavaScriptEnabled(true);  // Поддержка JS на сайтах
         webView.getSettings().setDomStorageEnabled(true);  // Поддержка LocalStorage
         webView.getSettings().setAllowFileAccess(true);    // Поддержка доступа к файлам
-        //webView.getSettings().setDatabaseEnabled(true);  // Поддержка БД... на тот случай, если Владислав снова что-то напакостит в работе tb :D
         bg = findViewById(R.id.bg);
-        reloadButton = findViewById(R.id.reloadButton);
-        tgchat = findViewById(R.id.tgchat);
-        srccode = findViewById(R.id.sourcecode);
+        reButton = findViewById(R.id.reButton);
+        website = findViewById(R.id.site);
 
-        // Скачивание файлов (в будущем улучшить)
+        // = = = = = = = = = =
+
+
+        // Скачивание ТОЛЬКО ДЛЯ .ЕРАСК ФАЙЛОВ (в будущем улучшить)
         webView.setDownloadListener((url, userAgent, contentDisposition, mimetype, contentLength) -> {
+
+            // Название файла состоят из номера (ID) треда, который получается из URL и пишется в его новое имя
             String penultimateDirectory = "";
             String[] parts = url.split("/");
             if (parts.length > 2) {
                 penultimateDirectory = parts[parts.length - 2];
             }
 
+            // Грузим .ЕРАСК файл и пишем об этом пользователю в уведомлении
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
             request.setMimeType(mimetype);
             request.setTitle("Thread-" + penultimateDirectory + ".epack");
             request.allowScanningByMediaScanner();
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
 
-            // Укажите директорию загрузки
+            // Директория загрузки
             request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "TwitblitEPACK/Thread-" + penultimateDirectory + ".epack");
 
+            // Менеджер загрузки
             DownloadManager dm = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
             dm.enqueue(request);
         });
+        // =========================================================
 
-        // Получаем данные из Intent
+
+        // Получаем данные о странице из другого источника (Intent)
         Intent intent = getIntent();
         String action = intent.getAction();
         String data = intent.getDataString();
 
-        // Первоначальная загрузка страницы TBL
+        // Первоначальная загрузка страницы в TBL
         if (Intent.ACTION_VIEW.equals(action) && data != null) {
-            webView.loadUrl(data);
+            webView.loadUrl(data); // Страница из Intent
         } else {
-            webView.loadUrl(TBL); // Загружать по умолчанию
+            webView.loadUrl(TBL);  // Страница "по умолчанию" (https://twitblit.ru/login)
         }
 
-        // Кнопка перезапуска страницы
-        reloadButton.setOnClickListener(v -> {
+        // Кнопка перезагрузки страницы
+        reButton.setOnClickListener(v -> {
             if (isNetworkAvailable()) {
 
                 String currentUrl = webView.getUrl();
@@ -117,39 +126,50 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Кнопка перехода в telegram чат Twitblit LITE
-        tgchat.setOnClickListener(v -> {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/Twitblit_LITE"));
+        // Кнопка для перехода на сайт проекта
+        website.setOnClickListener(v -> {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://tbl.catkrakenstudio.ru/"));
             startActivity(browserIntent);
         });
-
-        // Кнопка перехода к исходному коду на GitHub
-        srccode.setOnClickListener(v -> {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/G02m0n1k/Twitblit_LITE"));
-            startActivity(browserIntent);
-        });
-
+        
+        // Свайп вниз для обновления страницы
         swipeRefreshLayout.setOnRefreshListener(() -> webView.reload());
+
+        // Установка обработчика JavaScript событий (окно "Поделиться")
+        final Context context = this;
+        webView.addJavascriptInterface(new Object() {
+            @JavascriptInterface
+            public void shareLink(String title, String text, String url) {  // Если тоже гарит серым, то ничего страшного. Тут вызов с сайта.
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(Intent.EXTRA_TITLE, title);
+                shareIntent.putExtra(Intent.EXTRA_TEXT, text + "\n" + url);
+                context.startActivity(Intent.createChooser(shareIntent, getString(R.string.share))); // Метод для вызова окна "Поделиться"
+            }
+        }, "Android");
+
 
         WebViewClient webViewClient = new WebViewClient() {
 
-            // Показатель загрузки
+            // Загрузка страницы
             @Override
             public void onPageStarted(WebView view, String url, android.graphics.Bitmap favicon) {
-                swipeRefreshLayout.setRefreshing(true); // Скрыть кружочек
+                swipeRefreshLayout.setRefreshing(true); // Показывает кружочек
             }
             @Override
             public void onPageFinished(WebView view, String url) {
-                swipeRefreshLayout.setRefreshing(false); // Скрыть кружочек
+                swipeRefreshLayout.setRefreshing(false); // Скрывает кружочек
             }
-            //
+            // ====================
 
+            // Просто грузит сайт
             @SuppressWarnings("deprecation") @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
                 return true;
             }
 
+            // Фильтр который любые ссылки помимо twitblit.ru открывает за пределами приложения (в браузере)
             @SuppressLint("ObsoleteSdkInt")
             @TargetApi(Build.VERSION_CODES.N) @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
@@ -164,11 +184,12 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
 
+            // Отображение ошибки, если пропал интернет
             @Override
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
                 super.onReceivedError(view, errorCode, description, failingUrl);
                 // Отобразить ошибку, если возникла ошибка интернет-соединения
-                String html = "<html><body style='background-color:black;'> </body></html>";
+                String html = "<html><body style='background-color:black;'> </body></html>"; // Черная страница (чтобы не ослепило, когда интернет отвалится)
                 webView.loadData(html, "text/html", "UTF-8");
                 bg.setVisibility(View.VISIBLE);
             }
@@ -182,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.addCategory(Intent.CATEGORY_OPENABLE);
                 intent.setType("*/*");
-                startActivityForResult(Intent.createChooser(intent, "Choose a File"), FILECHOOSER_RESULTCODE);
+                startActivityForResult(Intent.createChooser(intent, getString(R.string.choice)), FILECHOOSER_RESULTCODE);
                 return true;
             }
         });
@@ -190,6 +211,8 @@ public class MainActivity extends AppCompatActivity {
         webView.setWebViewClient(webViewClient);
     }
 
+
+    // Для выбора файлов
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == FILECHOOSER_RESULTCODE) {
@@ -198,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
                 if (result != null) {
                     filePathCallback.onReceiveValue(new Uri[]{result}); // Передаем массив с одним элементом
                 } else {
-                    filePathCallback.onReceiveValue(null); // Если не было выбора, возвращаем null
+                    filePathCallback.onReceiveValue(null); // Если небыло выбора, то возвращаем null
                 }
                 filePathCallback = null;
             }
@@ -206,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    // Проверка наличия интернета
+    // Проверка состояния интернета
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
@@ -224,3 +247,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
+
+
+
+// Приложение написано в 2024 году с разрешения CEO Twitblit.ru
+// Автор - Daniil Shmotkin (G02m0n1k)
+// В текущем виде код одобрен на публикацию ТОЛЬКО для "G02m0n1k" и "CatKrakenStudio"

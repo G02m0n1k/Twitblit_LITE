@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Twitblit LITE</string>
-    <string name="loaderr">页面加载错误\n(*-﹏-)\n\n\n尝试重新启动它</string>
+    <string name="loaderr">页面加载错误\n(*-﹏-)\n\n\n\n尝试重新启动它</string>
     <string name="relpg">重新加载页面</string>
-    <string name="social">资源链接[俄文]:</string>
+    <string name="social">项目网站 ↴</string>
+    <string name="choice">选择文件</string>
+    <string name="share">共享条目</string>
 </resources>

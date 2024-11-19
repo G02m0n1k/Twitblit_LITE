@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Twitblit LITE</string>
-    <string name="loaderr">Page load\nerror\n(*-﹏-)\n\n\nTry reloading\nthe page</string>
+    <string name="loaderr">Page load\nerror\n(*-﹏-)\n\n\n\nTry reloading\nthe page</string>
     <string name="relpg">Reload</string>
-    <string name="social">Social links[RU]:</string>
+    <string name="social">Project site ↴</string>
+    <string name="choice">Choose a file</string>
+    <string name="share">Share</string>
 </resources>
