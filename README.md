@@ -1,6 +1,6 @@
 ﻿# <p align="center">Twitblit LITE</p>
 
-<p align="center"><image src="./readme-images/tbliteico.png" alt="Логотип Twitblit LITE" width="200"></p>
+<p align="center"><image src="./readme-images/tbliteico.png" alt="Логотип Twitblit LITE" width="230"></p>
 
 ** **
 
@@ -8,40 +8,40 @@
 
 ** **
 
-### ИНФОРМАЦИЯ:
+### ИНФОРМАЦИЯ
 
 **Описание:**  
-Twitblit LITE - НЕОФИЦИАЛЬНЫЙ Android клиент для новой Российской социальной сети - [Twitblit](https://twitblit.ru/). Данный клиент одобрен авторами [Twitblit](https://twitblit.ru/), поэтому ему можно доверять.
+Twitblit LITE - Альтернативный Android клиент для новой Российской социальной сети - [Twitblit](https://twitblit.ru/). Данный клиент одобрен авторами [Twitblit](https://twitblit.ru/), поэтому ему можно доверять.
 
-**Актуальная версия:** 1.0.31
+**Актуальная версия:** 1.0.4
 
 **Требуемый Android:** 9.0+
 
 ** **
 
-### СКАЧАТЬ:
+### СКАЧАТЬ
 
 <a href="https://www.rustore.ru/catalog/app/tb.g02m0n1k.twitblitlite" target="_blank">
 <img src="./readme-images/RuStore-dark-logo.png" width="156" height="52" alt="Скачайте из RuStore">
 </a>
 <a href="https://appgallery.cloud.huawei.com/ag/n/app/C112511387?locale=ru_RU&source=appshare&subsource=C112511387&shareTo=com.android.bluetooth&shareFrom=appmarket&shareIds=77a73b3d5cb94b0fb688c318884b9bc4_com.android.bluetooth&callType=SHARE" target="_blank">
-<img src="./readme-images/AG-rus.png" width="156" height="52" alt="Скачайте из AppGallery">
+<img src="./readme-images/AG-rus.png" width="156" height="52" alt="Откройте в AppGallery">
 </a>
 <a href="https://github.com/G02m0n1k/Twitblit_LITE" target="_blank">
-<img src="./readme-images/GitHub-dark-logo.png" width="156" height="52" alt="Открыть на GitHub">
+<img src="./readme-images/GitHub-dark-logo.png" width="156" height="52" alt="Посмотри на GitHub">
 </a>
 
 ** **
 
-### СПИСОК ИЗМЕНЕНИЙ:
+### СПИСОК ИЗМЕНЕНИЙ
 
-**1.0.31 (Тестовая)**  
+**1.0.4**  
 Изменения:
-* изменено окно для ситуации, если пропадет подключение к интернету
-* небольшие визуальные изменения
+* подтянута оптимизация
+* добавлены адаптивные иконки
 
 Исправления:
-* исправлена ошибка из-за которой не получалось поделиться страницей
+* исправлена ошибка из-за которой не получалось отправлять репорт
 
 **1.0.3**  
 Изменения:

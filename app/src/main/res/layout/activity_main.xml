@@ -19,6 +19,27 @@
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/info"
+            android:layout_width="74dp"
+            android:layout_height="67dp"
+            android:layout_marginEnd="70dp"
+            android:layout_marginBottom="2dp"
+            android:layout_gravity="end|top"
+            android:visibility="gone"
+            android:fontFamily="serif"
+            android:textColor="@color/tbl_blue"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:text="i"
+            android:backgroundTint="#00FFFFFF"
+            tools:ignore="MissingConstraints" />
+    </FrameLayout>
+
+    <FrameLayout
         android:id="@+id/bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -33,9 +54,9 @@
             android:gravity="center"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:text="@string/loaderr"
-            android:paddingTop="14dp"
+            android:paddingTop="8dp"
             tools:ignore="MissingConstraints" />
 
         <Button
@@ -43,38 +64,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:backgroundTint="@color/tb_dark"
+            android:backgroundTint="@color/tbl_blue"
             android:textColor="@color/white"
-            android:textSize="21sp"
+            android:textSize="23sp"
             android:text="@string/relpg"
             app:cornerRadius="10dp"
             tools:ignore="MissingConstraints" />
-
-        <TextView
-            android:id="@+id/social"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="27dp"
-            android:layout_gravity="bottom"
-            android:gravity="end"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:text="@string/social"
-            android:clickable="true"
-            android:focusable="true"
-            android:paddingBottom="50dp"
-            tools:ignore="MissingConstraints"/>
-
-        <Button
-            android:id="@+id/site"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="6dp"
-            android:layout_gravity="end|bottom"
-            android:backgroundTint="#00FFFFFF"
-            android:foreground="@drawable/web"
-            android:scaleType="fitCenter"/>
 
     </FrameLayout>
 

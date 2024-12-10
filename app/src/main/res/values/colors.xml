@@ -5,4 +5,6 @@
     <color name="tb_light">#5f17dc</color>
     <color name="tb_dark">#520187</color>
     <color name="tb_pink">#d493fc</color>
+    <color name="tbl_dark">#0c0c25</color>
+    <color name="tbl_blue">#3e19fc</color>
 </resources>
