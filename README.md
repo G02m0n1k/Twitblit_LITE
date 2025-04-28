@@ -24,9 +24,6 @@ Twitblit LITE - Альтернативный Android клиент для нов�
 <a href="https://www.rustore.ru/catalog/app/tb.g02m0n1k.twitblitlite" target="_blank">
 <img src="./readme-images/RuStore-dark-logo.png" width="156" height="52" alt="Скачайте из RuStore">
 </a>
-<a href="https://appgallery.cloud.huawei.com/ag/n/app/C112511387?locale=ru_RU&source=appshare&subsource=C112511387&shareTo=com.android.bluetooth&shareFrom=appmarket&shareIds=77a73b3d5cb94b0fb688c318884b9bc4_com.android.bluetooth&callType=SHARE" target="_blank">
-<img src="./readme-images/AG-rus.png" width="156" height="52" alt="Откройте в AppGallery">
-</a>
 <a href="https://github.com/G02m0n1k/Twitblit_LITE" target="_blank">
 <img src="./readme-images/GitHub-dark-logo.png" width="156" height="52" alt="Посмотри на GitHub">
 </a>
