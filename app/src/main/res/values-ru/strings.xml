@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Twitblit LITE</string>
+    <string name="loaderr">Ошибка загрузки\nстраницы\n(*-﹏-)\n\n\n\nПопробуйте её\nперезагрузить</string>
+    <string name="relpg">Перезагрузить</string>
+    <string name="choice">Выберите файл</string>
+    <string name="share">Поделиться</string>
+    <string name="abt">Автор клиента: G02m0n1k\nДизайн лого: Rastur\nCEO Twitblit: Владислав\n\nИздатели приложения:\nG02m0n1k / CatKrakenStudio</string>
+    <string name="web">[Сайт проекта]</string>
+</resources>

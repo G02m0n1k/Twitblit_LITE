@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="tb_light">#ac41c2</color>
+    <color name="tb_dark">#352564</color>
+    <color name="tb_pink">#dd68cd</color>
+    <color name="tbl_dark">#0c0c25</color>
+    <color name="tbl_blue">#3e19fc</color>
+</resources>
