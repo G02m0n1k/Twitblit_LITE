@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name">Twitblit LITE</string>
-    <string name="loaderr">页面加载错误\n(*-﹏-)\n\n\n\n尝试重新启动它</string>
-    <string name="relpg">重新加载页面</string>
-    <string name="choice">选择文件</string>
-    <string name="share">共享条目</string>
-    <string name="abt">应用程序开发人员: G02m0n1k\n设计师: Rastur\nCEO Twitblit: Vladislav\n\n应用程序的发布者:\nG02m0n1k / CatKrakenStudio</string>
-    <string name="web">[网站]</string>
-</resources>
