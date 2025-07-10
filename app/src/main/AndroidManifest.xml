@@ -34,9 +34,10 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https" />
-                <data android:scheme="www" />
-                <data android:host="twitblit.ru" />
+                <data android:scheme="https"/>
+                <data android:host="twitblit.ru"/>
+                <data android:scheme="https"/>
+                <data android:host="twbl.ru"/>
             </intent-filter>
         </activity>
     </application>

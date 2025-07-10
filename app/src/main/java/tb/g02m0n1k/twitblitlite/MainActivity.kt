@@ -1,20 +1,18 @@
 package tb.g02m0n1k.twitblitlite
 
 import android.annotation.SuppressLint
-import android.app.AlertDialog
 import android.app.DownloadManager
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
 import android.view.View
 import android.webkit.*
-import android.widget.Button
 import android.widget.ImageButton
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -23,6 +21,7 @@ import okhttp3.Callback
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
+import java.io.File
 import java.io.IOException
 
 @Suppress("DEPRECATION")
@@ -80,20 +79,45 @@ class MainActivity : AppCompatActivity() {
         CookieManager.getInstance().flush()
 
         // Скачивание файлов в оригинальном разрешении
-        webView.setDownloadListener { url, _, contentDisposition, mimetype, _ ->
-            // Извлекаем оригинальное имя файла из URL или contentDisposition
-            val fileName = URLUtil.guessFileName(url, contentDisposition, mimetype)
+        webView.setDownloadListener { url, _, contentDisposition, mimeType, _ ->
+            try {
+                // Генерация имени файла (с защитой от пустых значений)
+                var fileName = URLUtil.guessFileName(url, contentDisposition, mimeType)
+                if (fileName.isBlank()) fileName = "file_${System.currentTimeMillis()}"
 
-            val request = DownloadManager.Request(Uri.parse(url)).apply {
-                setMimeType(mimetype)
-                setTitle(fileName) // Используем оригинальное имя файла
-                allowScanningByMediaScanner()
-                setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-                setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "Twitblit LITE/$fileName") // Сохраняем с оригинальным именем
+                val downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+                val appDir = File(downloadsDir, "Twitblit LITE")
+                if (!appDir.exists()) appDir.mkdirs()
+
+                // Проверяем, не существует ли уже файл
+                val targetFile = File(appDir, fileName)
+                if (targetFile.exists()) {
+                    // Добавляем timestamp к имени
+                    val newName = "${fileName.substringBeforeLast(".")}_${System.currentTimeMillis()}.${fileName.substringAfterLast(".", "")}"
+                    fileName = newName
+                }
+
+                // Настройка запроса на загрузку
+                val request = DownloadManager.Request(Uri.parse(url)).apply {
+                    setTitle(">>> ${fileName.take(18)}...") // Обрезка длинных имен
+                    setDescription(url)
+                    setMimeType(mimeType)
+                    setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                    setDestinationUri(Uri.fromFile(File(appDir, fileName)))
+                    allowScanningByMediaScanner()
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        setRequiresCharging(false)
+                    }
+                }
+
+                // Запуск загрузки
+                val dm = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+                dm.enqueue(request)
+
+            } catch (e: Exception) {
+                Log.e("DownloadError", "Ошибка загрузки: ${e.message}")
             }
-
-            val dm = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-            dm.enqueue(request)
         }
 
         // Получаем данные о странице из другого источника (intent)

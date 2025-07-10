@@ -14,7 +14,8 @@
         <WebView
             android:id="@+id/webView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:background="@color/black" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <FrameLayout
@@ -34,13 +35,13 @@
             android:textStyle="bold"
             android:textSize="20sp"
             android:text="@string/loaderr"
-            android:paddingTop="8dp"
+            android:paddingTop="18dp"
             tools:ignore="MissingConstraints" />
 
         <ImageButton
             android:id="@+id/reButton"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="82dp"
+            android:layout_height="82dp"
             android:layout_gravity="center"
             android:background="@drawable/gradient_button"
             android:src="@drawable/ic_reload_page"

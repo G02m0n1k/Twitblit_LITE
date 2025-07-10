@@ -8,5 +8,5 @@
         android:endColor="@color/tbl_dark"
         android:angle="90" />
 
-    <corners android:radius="22dp" />
+    <corners android:radius="15dp" />
 </shape>
